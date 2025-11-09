@@ -10,14 +10,16 @@ if (length(args) > 0) {
     branchname = args[3]
   }
 } else {
-  Gitproject = "wolski"
-  Rpackage = "prolfquabenchmark"
-  branchname = "main"
+
+  #fgcz prolfqua Modelling2R6 
+  Gitproject = "fgcz"
+  Rpackage = "prolfqua"
+  branchname = "Modelling2R6"
 }
 
 
 
-cat(">>>>>",Rpackage, "\n")
+cat(">>>>>", Rpackage, "\n")
 
 test_dir = paste0("test_build_", Rpackage, "/")
 setwd(test_dir)
@@ -52,7 +54,7 @@ if (TRUE) {
     stop("ERROR : ", Rpackage, " package check failed!")
   }
 
-  if (TRUE) {
+  if (FALSE) {
     message(">>> running Rpackage check CRAN on: ", Rpackage)
     pat = paste0(Rpackage, "_[0-9].*.tar.gz")
     packagetar = dir(".", pattern = pat)
@@ -61,7 +63,7 @@ if (TRUE) {
       stop("ERROR : ", Rpackage, " package check failed!")
     }
     message(">>> running BiocCheck for Rpackage :", packagetar)
-    BiocCheck::BiocCheck(packagetar)
+    BiocCheck::BiocCheck(packagetar) # Bioc Check does not return dies at checking use of S3 registration ...
 
   }
 

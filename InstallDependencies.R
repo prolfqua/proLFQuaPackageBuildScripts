@@ -7,7 +7,7 @@ Rpackage = args[2]
 
 
 if(length(args) == 0){
-    gitProject = "wolski"
+    gitProject = "fgcz"
     Rpackage = "prolfqua"
 } else {
     gitProject = args[1]
@@ -42,6 +42,8 @@ setwd(test_dir)
 
 repository = paste0("https://github.com/", gitProject, "/", Rpackage)
 message(">>>> cloning repository: ", repository)
+unlink(Rpackage, recursive = TRUE)
+dir()
 retval = system2("git", args = c("clone", repository))
 
 if (retval != 0) {
@@ -51,8 +53,10 @@ if (retval != 0) {
 if (dir.exists(Rpackage)) {
     message(">>> installing package dependencies for : ", Rpackage)
     install.packages("devtools", repos = 'https://cloud.r-project.org' )
-    devtools::install_dev_deps(Rpackage, quiet = FALSE, type = "source", repos = "https://cloud.r-project.org" )
-    devtools::install_dev_deps(Rpackage, quiet = FALSE, type = "binary", repos = "https://cloud.r-project.org" )
+    install.packages("BiocManager")
+    BiocManager::install(c("vsn", "proDA", "SummarizedExperiment", "S4Vectors"))
+    # devtools::install_dev_deps(Rpackage, quiet = FALSE, type = "source", repos = "https://cloud.r-project.org" )
+    res = devtools::install_dev_deps(Rpackage, quiet = FALSE, type = "binary") #, repos = "https://cloud.r-project.org" )
 }
 
 cat("\n\n\n >>>> PREINSTALLED DEPENDENCIES <<<< \n\n\n")
