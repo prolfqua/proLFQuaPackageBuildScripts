@@ -11,10 +11,10 @@ if (length(args) > 0) {
   }
 } else {
 
-  #fgcz prolfqua Modelling2R6 
+  #fgcz prolfqua main 
   Gitproject = "fgcz"
   Rpackage = "prolfqua"
-  branchname = "Modelling2R6"
+  branchname = "main"
 }
 
 

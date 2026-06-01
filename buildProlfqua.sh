@@ -23,7 +23,7 @@ fi
 
 
 rm -Rf $HOME/__checkout/proLFQuaPackageBuildScripts/test_build_prolfqua/*
-Rscript --vanilla runBuild.R fgcz prolfqua Modelling2R6 > runBuild_prolfqua.log 2>&1
+Rscript --vanilla runBuild.R fgcz prolfqua main > runBuild_prolfqua.log 2>&1
 
 R --vanilla -e "install.packages('igraph', repos = 'https://cloud.r-project.org' )"
 
